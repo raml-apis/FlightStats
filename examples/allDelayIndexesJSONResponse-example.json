@@ -1,0 +1,10 @@
+{
+  "delayIndexes" : [
+  ] ,
+  "error" : {
+    "httpStatusCode" : 403 ,
+    "errorCode" : "AUTH_FAILURE" ,
+    "errorId" : "7a53587b-e229-49be-b0aa-cb37a7463769" ,
+    "errorMessage" : "Authorization failed. usage limits are exceeded"
+  }
+}

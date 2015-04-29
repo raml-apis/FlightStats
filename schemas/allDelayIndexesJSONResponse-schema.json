@@ -1,0 +1,35 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "delayIndexes" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+      ]
+    } ,
+    "error" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "httpStatusCode" : {
+          "type" : "number" ,
+          "required" : false
+        } ,
+        "errorCode" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "errorId" : {
+          "type" : "string" ,
+          "required" : false
+        } ,
+        "errorMessage" : {
+          "type" : "string" ,
+          "required" : false
+        }
+      }
+    }
+  }
+}
