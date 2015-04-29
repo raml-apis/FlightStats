@@ -19,10 +19,8 @@ API.createClient('client', '/apiplatform/repository/public/organizations/30/apis
 ```
 
 ```javascript
-// APPID = prompt("Please input Access appId")
-// APPKEY = prompt("Please input Access appKey")
-APPID = "83e5dbd8"
-APPKEY = "c59f43472bd1c7871eb26ddbdb9c47e9"
+APPID = prompt("Please input Access appId")
+APPKEY = prompt("Please input Access appKey")
 ```
 
 ```javascript

@@ -19,10 +19,8 @@ API.createClient('client', '#REF_TAG_DEFENITION');
 ```
 
 ```javascript
-// APPID = prompt("Please input Access appId")
-// APPKEY = prompt("Please input Access appKey")
-APPID = "83e5dbd8"
-APPKEY = "c59f43472bd1c7871eb26ddbdb9c47e9"
+APPID = prompt("Please input Access appId")
+APPKEY = prompt("Please input Access appKey")
 VERSION = "v1"
 MEDIA_TYPE_JSON = "json"
 MEDIA_TYPE_JSON_EXT = ".json"
