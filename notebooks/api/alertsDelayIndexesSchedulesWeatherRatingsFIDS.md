@@ -19,8 +19,8 @@ API.createClient('client', '#REF_TAG_DEFENITION');
 ```
 
 ```javascript
-APPID = prompt("Please input Access appId")
-APPKEY = prompt("Please input Access appKey")
+APPID = prompt("Please input APPID")
+APPKEY = prompt("Please input APPKEY")
 VERSION = "v1"
 MEDIA_TYPE_JSON = "json"
 MEDIA_TYPE_JSON_EXT = ".json"
@@ -202,17 +202,6 @@ airportsResponse = client.delayindex.rest.version(VERSION).mediaType(MEDIA_TYPE_
 ```javascript
 assert.equal( airportsResponse.status, 200 )
 assert.notProperty(airportsResponse.body, "error")
-```
-
-Retrive all delay indexes
-
-```javascript
-allResponse = client.delayindex.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).all.get()
-```
-
-```javascript
-assert.equal( allResponse.status, 200 )
-assert.notProperty(allResponse.body, "error")
 ```
 
 Returns DelayIndexes for airports in the given Country

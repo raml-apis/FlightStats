@@ -45,8 +45,6 @@ schemas:
   - delayindexResourcesXMLResponse: !include /schemas/delayindexResourcesXMLResponse-schema.xsd
   - airportsDelayIndexJSONResponse: !include /schemas/airportsDelayIndexJSONResponse-schema.json
   - airportsDelayIndexXMLResponse: !include /schemas/airportsDelayIndexXMLResponse-schema.xsd
-  - allDelayIndexesXMLResponse: !include /schemas/allDelayIndexesXMLResponse-schema.xsd
-  - allDelayIndexesJSONResponse: !include /schemas/allDelayIndexesJSONResponse-schema.json
   - countryDelayIndexesJSONResponse: !include /schemas/countryDelayIndexesJSONResponse-schema.json
   - countryDelayIndexesXMLResponse: !include /schemas/countryDelayIndexesXMLResponse-schema.xsd
   - regionDelayIndexesJSONResponse: !include /schemas/regionDelayIndexesJSONResponse-schema.json
@@ -490,18 +488,6 @@ traits:
                 application/xml: 
                   schema: airportsDelayIndexXMLResponse
                   example: !include examples/airportsDelayIndexXMLResponse-example.xml
-    /all: 
-      get: 
-        is: [ extendedOptions , authParams ]
-        responses: 
-          200: 
-            body: 
-              application/xml: 
-                schema: allDelayIndexesXMLResponse
-                example: !include examples/allDelayIndexesXMLResponse-example.xml
-              application/json: 
-                schema: allDelayIndexesJSONResponse
-                example: !include examples/allDelayIndexesJSONResponse-example.json
     /country: 
       /{country}: 
         get: 
