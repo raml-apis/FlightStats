@@ -1,5 +1,5 @@
 ---
-site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/dashboard/apis/18801/versions/20074/portal/pages/33718/edit
+site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/dashboard/apis/19695/versions/21040/portal/pages/34249/edit
 apiNotebookVersion: 1.1.67
 title: Alerts, Delay Index, FIDS, Ratings
 ---
@@ -71,10 +71,20 @@ assert.equal( alertsRestMediaTypeResponse.status, 200 )
 assert.notProperty(alertsRestMediaTypeResponse.body, "error")
 ```
 
+E-mail for receiving alerts.
+
+```javascript
+EMAIL = "your@email.com"
+userEmail = prompt("Please input your email for receiving alerts. \nOr click \"Cancel\" button for using fake email.")
+if ((userEmail != null) && (userEmail != "")){
+	EMAIL = userEmail
+}
+```
+
 Create a flight rule to be monitored for a specific flight between two airports departing on the given day. Returns the fully constructed flight rule that was created
 
 ```javascript
-flightMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").departing.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":"your@email.com"})
+flightMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").departing.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":EMAIL})
 ```
 
 ```javascript
@@ -85,7 +95,7 @@ assert.notProperty(flightMonitoringResponse.body, "error")
 Create a flight rule to be monitored for a specific flight between two airports arriving on the given day. Returns the fully constructed flight rule that was created
 
 ```javascript
-arrivingMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").arriving.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":"your@email.com"})
+arrivingMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").arriving.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":EMAIL})
 ```
 
 ```javascript
@@ -96,7 +106,7 @@ assert.notProperty(arrivingMonitoringResponse.body, "error")
 Create a flight rule to be monitored for a specific flight departing from an airport on the given day. Returns the fully constructed flight rule that was created
 
 ```javascript
-departingMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").departing.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":"your@email.com"})
+departingMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").from.departureAirport("LAX").departing.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":EMAIL})
 ```
 
 ```javascript
@@ -107,7 +117,7 @@ assert.notProperty(departingMonitoringResponse.body, "error")
 Create a flight rule to be monitored for a specific flight arriving at an airport on the given day. Returns the fully constructed flight rule that was created
 
 ```javascript
-arrivingAirportMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").to.arrivalAirport("ORD").arriving.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":"your@email.com"})
+arrivingAirportMonitoringResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).create.carrier("AA").flightNumber("1113").to.arrivalAirport("ORD").arriving.year(YEAR).month(MONTH).day(DAY).get({"type":MEDIA_TYPE_JSON, "deliverTo":EMAIL})
 ```
 
 ```javascript
@@ -160,10 +170,10 @@ assert.equal( alertLessThanResponse.status, 200 )
 assert.notProperty(alertLessThanResponse.body, "error")
 ```
 
-We made this service to help you create and test your alert webservices, where FlightStats will send alert messages. When you invoke this service, FlightStats will send a simulated alert - a fake event for a fake flight - to your URL
+We made this service to help you create and test your alert webservices, where FlightStats will send alert messages. When you invoke this service, FlightStats will send a simulated alert - a fake event for a fake flight - to your EMAIL or URL
 
 ```javascript
-arrivalAirportResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).testdelivery.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").get({"type":MEDIA_TYPE_JSON, "deliverTo":"your@email.com"})
+arrivalAirportResponse = client.alerts.rest.version(VERSION).mediaType(MEDIA_TYPE_JSON).testdelivery.carrier("AA").flightNumber("1113").from.departureAirport("LAX").to.arrivalAirport("ORD").get({"appId":APPID,"appKey":APPKEY, "type":MEDIA_TYPE_JSON, "deliverTo":"smtp://" + EMAIL})
 ```
 
 ```javascript

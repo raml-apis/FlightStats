@@ -85,6 +85,8 @@ schemas:
   - alertLessThanResponse: !include /schemas/alertLessThanResponse-schema.json
   - alertLessThanXMLResponse: !include /schemas/alertLessThanXMLResponse-schema.json
   - schedulesResourcesResponse: !include /schemas/schedulesResourcesResponse-schema.xsd
+  - testdeliveryJSONResponse: !include /schemas/testdeliveryJSONResponse-schema.json
+  - testdeliveryXMLResponse: !include /schemas/testdeliveryXMLResponse-schema.xsd
 resourceTypes:
   - iataAirlineCode: !include resourceTypes/iataAirlineCode.raml
   - airports: !include resourceTypes/airports.raml
@@ -446,7 +448,11 @@ traits:
                       200: 
                         body: 
                           application/json: 
+                            schema: testdeliveryJSONResponse
+                            example: !include examples/testdeliveryJSONResponse-example.json
                           application/xml: 
+                            schema: testdeliveryXMLResponse
+                            example: !include examples/testdeliveryXMLResponse-example.xml
 /delayindex/rest/resources: 
   /{version}: 
     get: 
