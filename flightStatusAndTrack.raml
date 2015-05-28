@@ -5,38 +5,38 @@ baseUri: https://api.flightstats.com/flex/flightstatus/rest/{version}
 securitySchemes:
   - apiKey: !include securitySchemes/apiKey.raml
 schemas:
-  - fleetStatusXMLResponse: !include /schemas/fleetStatusXMLResponse-schema.xsd
-  - fleetStatusJSONResponse: !include /schemas/fleetStatusJSONResponse-schema.json
-  - fleetTrackXMLResponse: !include /schemas/fleetTrackXMLResponse-schema.xsd
-  - fleetTrackJSONResponse: !include /schemas/fleetTrackJSONResponse-schema.json
-  - carrierFlightStatusesXMLResponse: !include /schemas/carrierFlightStatusesXMLResponse-schema.xsd
-  - carrierFlightStatusesJSONResponse: !include /schemas/carrierFlightStatusesJSONResponse-schema.json
-  - flightStatusXMLResponse: !include /schemas/flightStatusXMLResponse-schema.xsd
-  - flightStatusJSONResponse: !include /schemas/flightStatusJSONResponse-schema.json
-  - flightNumberStatusXMLResponse: !include /schemas/flightNumberStatusXMLResponse-schema.xsd
-  - flightNumberStatusJSONResponse: !include /schemas/flightNumberStatusJSONResponse-schema.json
-  - trackFlightPositionXMLResponse: !include /schemas/trackFlightPositionXMLResponse-schema.xsd
-  - trackFlightPositionJSONResponse: !include /schemas/trackFlightPositionJSONResponse-schema.json
-  - positionalTracksFlightsArrivingXMLResponse: !include /schemas/positionalTracksFlightsArrivingXMLResponse-schema.xsd
-  - positionalTracksFlightsArrivingJSONResponse: !include /schemas/positionalTracksFlightsArrivingJSONResponse-schema.json
-  - positionalTracksFlightsDepartingXMLResponse: !include /schemas/positionalTracksFlightsDepartingXMLResponse-schema.xsd
-  - positionalTracksFlightsDepartingJSONResponse: !include /schemas/positionalTracksFlightsDepartingJSONResponse-schema.json
-  - statusAllFlightsDepartingXMLResponse: !include /schemas/statusAllFlightsDepartingXMLResponse-schema.xsd
-  - statusAllFlightsDepartingJSONResponse: !include /schemas/statusAllFlightsDepartingJSONResponse-schema.json
-  - statusAllFlightsArrivingXMLResponse: !include /schemas/statusAllFlightsArrivingXMLResponse-schema.xsd
-  - statusAllFlightsArrivingJSONResponse: !include /schemas/statusAllFlightsArrivingJSONResponse-schema.json
-  - positionalAirportTracksXMLResponse: !include /schemas/positionalAirportTracksXMLResponse-schema.xsd
-  - positionalAirportTracksJSONResponse: !include /schemas/positionalAirportTracksJSONResponse-schema.json
-  - positionalAirportDepTracksXMLResponse: !include /schemas/positionalAirportDepTracksXMLResponse-schema.xsd
-  - positionalAirportDepTracksJSONResponse: !include /schemas/positionalAirportDepTracksJSONResponse-schema.json
-  - allRouteStatusDepXMLResponse: !include /schemas/allRouteStatusDepXMLResponse-schema.xsd
-  - allRouteStatusDepJSONResponse: !include /schemas/allRouteStatusDepJSONResponse-schema.json
-  - allRouteStatusArrXMLResponse: !include /schemas/allRouteStatusArrXMLResponse-schema.xsd
-  - allRouteStatusArrJSONResponse: !include /schemas/allRouteStatusArrJSONResponse-schema.json
-  - boundingBoxXMLResponse: !include /schemas/boundingBoxXMLResponse-schema.xsd
-  - boundingBoxJSONResponse: !include /schemas/boundingBoxJSONResponse-schema.json
-  - flightsAroundPointXMLResponse: !include /schemas/flightsAroundPointXMLResponse-schema.xsd
-  - flightsAroundPointJSONResponse: !include /schemas/flightsAroundPointJSONResponse-schema.json
+  - fleetStatusXMLResponse: !include schemas/fleetStatusXMLResponse-schema.xsd
+  - fleetStatusJSONResponse: !include schemas/fleetStatusJSONResponse-schema.json
+  - fleetTrackXMLResponse: !include schemas/fleetTrackXMLResponse-schema.xsd
+  - fleetTrackJSONResponse: !include schemas/fleetTrackJSONResponse-schema.json
+  - carrierFlightStatusesXMLResponse: !include schemas/carrierFlightStatusesXMLResponse-schema.xsd
+  - carrierFlightStatusesJSONResponse: !include schemas/carrierFlightStatusesJSONResponse-schema.json
+  - flightStatusXMLResponse: !include schemas/flightStatusXMLResponse-schema.xsd
+  - flightStatusJSONResponse: !include schemas/flightStatusJSONResponse-schema.json
+  - flightNumberStatusXMLResponse: !include schemas/flightNumberStatusXMLResponse-schema.xsd
+  - flightNumberStatusJSONResponse: !include schemas/flightNumberStatusJSONResponse-schema.json
+  - trackFlightPositionXMLResponse: !include schemas/trackFlightPositionXMLResponse-schema.xsd
+  - trackFlightPositionJSONResponse: !include schemas/trackFlightPositionJSONResponse-schema.json
+  - positionalTracksFlightsArrivingXMLResponse: !include schemas/positionalTracksFlightsArrivingXMLResponse-schema.xsd
+  - positionalTracksFlightsArrivingJSONResponse: !include schemas/positionalTracksFlightsArrivingJSONResponse-schema.json
+  - positionalTracksFlightsDepartingXMLResponse: !include schemas/positionalTracksFlightsDepartingXMLResponse-schema.xsd
+  - positionalTracksFlightsDepartingJSONResponse: !include schemas/positionalTracksFlightsDepartingJSONResponse-schema.json
+  - statusAllFlightsDepartingXMLResponse: !include schemas/statusAllFlightsDepartingXMLResponse-schema.xsd
+  - statusAllFlightsDepartingJSONResponse: !include schemas/statusAllFlightsDepartingJSONResponse-schema.json
+  - statusAllFlightsArrivingXMLResponse: !include schemas/statusAllFlightsArrivingXMLResponse-schema.xsd
+  - statusAllFlightsArrivingJSONResponse: !include schemas/statusAllFlightsArrivingJSONResponse-schema.json
+  - positionalAirportTracksXMLResponse: !include schemas/positionalAirportTracksXMLResponse-schema.xsd
+  - positionalAirportTracksJSONResponse: !include schemas/positionalAirportTracksJSONResponse-schema.json
+  - positionalAirportDepTracksXMLResponse: !include schemas/positionalAirportDepTracksXMLResponse-schema.xsd
+  - positionalAirportDepTracksJSONResponse: !include schemas/positionalAirportDepTracksJSONResponse-schema.json
+  - allRouteStatusDepXMLResponse: !include schemas/allRouteStatusDepXMLResponse-schema.xsd
+  - allRouteStatusDepJSONResponse: !include schemas/allRouteStatusDepJSONResponse-schema.json
+  - allRouteStatusArrXMLResponse: !include schemas/allRouteStatusArrXMLResponse-schema.xsd
+  - allRouteStatusArrJSONResponse: !include schemas/allRouteStatusArrJSONResponse-schema.json
+  - boundingBoxXMLResponse: !include schemas/boundingBoxXMLResponse-schema.xsd
+  - boundingBoxJSONResponse: !include schemas/boundingBoxJSONResponse-schema.json
+  - flightsAroundPointXMLResponse: !include schemas/flightsAroundPointXMLResponse-schema.xsd
+  - flightsAroundPointJSONResponse: !include schemas/flightsAroundPointJSONResponse-schema.json
 /{mediaType}: 
   /flight: 
     /status: 
