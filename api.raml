@@ -3,7 +3,7 @@ title: FlightStats
 version: v1
 baseUri: https://api.flightstats.com/flex
 securitySchemes:
-  - apiKey: !include securitySchemes/apiKey.raml
+  - apiKey: !include securitySchemes/apiHeaderKey.raml
 schemas:
   - airlinesResourcesResponse: !include schemas/airlinesResourcesResponse-schema.json
   - activeJSONResponse: !include schemas/activeJSONResponse-schema.json

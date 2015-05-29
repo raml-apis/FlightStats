@@ -3,7 +3,7 @@ title: Flight Status And Track
 version: v2
 baseUri: https://api.flightstats.com/flex/flightstatus/rest/{version}
 securitySchemes:
-  - apiKey: !include securitySchemes/apiKey.raml
+  - apiKey: !include securitySchemes/apiHeaderKey.raml
 schemas:
   - fleetStatusXMLResponse: !include schemas/fleetStatusXMLResponse-schema.xsd
   - fleetStatusJSONResponse: !include schemas/fleetStatusJSONResponse-schema.json
