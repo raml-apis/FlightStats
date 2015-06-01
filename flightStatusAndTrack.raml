@@ -3,7 +3,8 @@ title: Flight Status And Track
 version: v2
 baseUri: https://api.flightstats.com/flex/flightstatus/rest/{version}
 securitySchemes:
-  - apiKey: !include securitySchemes/apiHeaderKey.raml
+  - apiHeaderKey: !include securitySchemes/apiHeaderKey.raml
+  - apiQueryKey: !include securitySchemes/apiQueryKey.raml
 schemas:
   - fleetStatusXMLResponse: !include schemas/fleetStatusXMLResponse-schema.xsd
   - fleetStatusJSONResponse: !include schemas/fleetStatusJSONResponse-schema.json
@@ -37,6 +38,7 @@ schemas:
   - boundingBoxJSONResponse: !include schemas/boundingBoxJSONResponse-schema.json
   - flightsAroundPointXMLResponse: !include schemas/flightsAroundPointXMLResponse-schema.xsd
   - flightsAroundPointJSONResponse: !include schemas/flightsAroundPointJSONResponse-schema.json
+securedBy: [ apiHeaderKey ]
 /{mediaType}: 
   /flight: 
     /status: 

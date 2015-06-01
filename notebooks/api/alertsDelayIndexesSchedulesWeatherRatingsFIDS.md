@@ -1,5 +1,5 @@
 ---
-site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/dashboard/apis/19695/versions/21040/portal/pages/34249/edit
+site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/organizations/52560d3f-c37a-409d-9887-79e0a9a9ecff/dashboard/apis/19695/versions/21040/portal/pages/34344/edit
 apiNotebookVersion: 1.1.67
 title: Alerts, Delay Index, FIDS, Ratings
 ---
@@ -18,33 +18,37 @@ assert = chai.assert
 API.createClient('client', '#REF_TAG_DEFENITION');
 ```
 
+App credentials, Using api version, Response data format.
+
 ```javascript
 APPID = prompt("Please input APPID")
 APPKEY = prompt("Please input APPKEY")
 VERSION = "v1"
 MEDIA_TYPE_JSON = "json"
 MEDIA_TYPE_JSON_EXT = ".json"
-MEDIA_TYPE_XML = "xml"
-MEDIA_TYPE_XML_EXT = ".xml"
 ```
+
+Date and time for requests.
 
 ```javascript
 var currentTime = new Date()
 var YEAR = currentTime.getFullYear()
-var MONTH = (currentTime.getMonth() + 2) % 12
+var MONTH = currentTime.getMonth() + 1
 var DAY = currentTime.getDate()
 var DAY_HOUR = "8"
 ```
 
+Function for setting header parameters.
+
 ```javascript
-function customAuthHack(o){
+function addOutHeaders(o){
 o.setRequestHeader("appId", APPID);
 o.setRequestHeader("appKey",  APPKEY);
 }
 ```
 
 ```javascript
-API.set(client, 'beforeSend', new function(){return customAuthHack})
+API.set(client, 'beforeSend', new function(){return addOutHeaders})
 ```
 
 Alerts resource info.
@@ -61,9 +65,7 @@ assert.notProperty(resourceResponse.body, "error")
 Alerts minimal info
 
 ```javascript
-alertsRestMediaTypeResponse = client("/alerts/rest/resources{MediaTypeExt}", {
-  "MediaTypeExt": MEDIA_TYPE_JSON_EXT
-}).get()
+alertsRestMediaTypeResponse = client.alerts.rest.resources.extension(MEDIA_TYPE_JSON_EXT).get()
 ```
 
 ```javascript
@@ -195,7 +197,7 @@ assert.notProperty(delayindexVersionResponse.body, "error")
 Delayindex API resource info
 
 ```javascript
-delayindexResourcesResponse = client.delayindex.rest.resources(MEDIA_TYPE_JSON_EXT).get()
+delayindexResourcesResponse = client.delayindex.rest.resources.extension(MEDIA_TYPE_JSON_EXT).get()
 ```
 
 ```javascript
@@ -305,7 +307,7 @@ assert.notProperty(weatherVersionResponse.body, "error")
 Weather resource info
 
 ```javascript
-weatherRestResourcesMediaTypeExtResponse = client.weather.rest.resources(MEDIA_TYPE_JSON_EXT).get()
+weatherRestResourcesMediaTypeExtResponse = client.weather.rest.resources.extension(MEDIA_TYPE_JSON_EXT).get()
 ```
 
 ```javascript

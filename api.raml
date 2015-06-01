@@ -3,7 +3,8 @@ title: FlightStats
 version: v1
 baseUri: https://api.flightstats.com/flex
 securitySchemes:
-  - apiKey: !include securitySchemes/apiHeaderKey.raml
+  - apiHeaderKey: !include securitySchemes/apiHeaderKey.raml
+  - apiQueryKey: !include securitySchemes/apiQueryKey.raml
 schemas:
   - airlinesResourcesResponse: !include schemas/airlinesResourcesResponse-schema.json
   - activeJSONResponse: !include schemas/activeJSONResponse-schema.json
@@ -94,8 +95,8 @@ resourceTypes:
   - airportCode: !include resourceTypes/airportCode.raml
 traits:
   - extendedOptions: !include traits/extendedOptions.raml
-  - authParams: !include traits/authParams.raml
   - alert: !include traits/alert.raml
+securedBy: [ apiHeaderKey ]
 /airlines/rest/resources: 
   get: 
     responses: 
@@ -106,7 +107,7 @@ traits:
   /{mediaType}: 
     /active: 
       get: 
-        is: [ extendedOptions , authParams ]
+        is: [ extendedOptions  ]
         description: Returns a listing of currently active airlines
         responses: 
           200: 
@@ -121,7 +122,7 @@ traits:
         /{month}: 
           /{day}: 
             get: 
-              is: [ extendedOptions , authParams ]
+              is: [ extendedOptions  ]
               description: Returns a listing of active airlines on the given date
               responses: 
                 200: 
@@ -134,7 +135,7 @@ traits:
                       example: !include examples/activeAirlinesAtGivenDateJSONResponse-example.json
     /all: 
       get: 
-        is: [ extendedOptions , authParams ]
+        is: [ extendedOptions  ]
         description: Returns a listing of all airlines, including those that are not currently active
         responses: 
           200: 
@@ -148,7 +149,7 @@ traits:
     /fs: 
       /{code}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns the airline with the given FlightStats code, a globally unique code that is consistent across time
           responses: 
             200: 
@@ -169,7 +170,7 @@ traits:
     /icao: 
       /{icaoCode}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns a listing of airlines that have had the given ICAO code
           responses: 
             200: 
@@ -184,7 +185,7 @@ traits:
           /{month}: 
             /{day}: 
               get: 
-                is: [ extendedOptions , authParams ]
+                is: [ extendedOptions  ]
                 description: Returns the airline that had the ICAO code on the given date
                 responses: 
                   200: 
@@ -204,7 +205,7 @@ traits:
           application/json: 
             schema: airlinesResourcesResponse
             example: !include examples/airportsResourcesResponse-example.json
-/airports/rest/resources{MediaTypeExt}: 
+/airports/rest/resources{mediaTypeExtension}: 
   get: 
     responses: 
       200: 
@@ -230,7 +231,7 @@ traits:
   /fs: 
     /{code}: 
       get: 
-        is: [ extendedOptions , authParams ]
+        is: [ extendedOptions  ]
         description: Returns the airport with the given FlightStats code, a globally unique code across time
         responses: 
           200: 
@@ -248,7 +249,7 @@ traits:
         /{month}: 
           /{day}: 
             get: 
-              is: [ extendedOptions , authParams ]
+              is: [ extendedOptions  ]
               description: Returns the airport that had the IATA code on the given date.
               responses: 
                 200: 
@@ -284,7 +285,7 @@ traits:
           application/json: 
             schema: alertsResourcesResponse
             example: !include examples/alertsResourcesResponse-example.json
-/alerts/rest/resources{MediaTypeExt}: 
+/alerts/rest/resources{mediaTypeExtension}: 
   get: 
     responses: 
       200: 
@@ -309,7 +310,7 @@ traits:
                       /{month}: 
                         /{day}: 
                           get: 
-                            is: [ extendedOptions , authParams , alert ]
+                            is: [ extendedOptions  , alert ]
                             description: Create a flight rule to be monitored for a specific flight between two airports departing on the given day. Returns the fully constructed flight rule that was created.
                             queryParameters: 
                               name: 
@@ -375,7 +376,7 @@ traits:
     /delete: 
       /{ruleId}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Deletes a flight rule that was previously created given a rule ID. Returns the flight rule that was deleted. Note that once deleted any subsequent calls with the same ID will return a rule not found exception.
           queryParameters: 
             callback: 
@@ -391,7 +392,7 @@ traits:
     /get: 
       /{ruleId}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns the flight rule that was previously created given a rule ID.
           queryParameters: 
             callback: 
@@ -418,7 +419,7 @@ traits:
                 example: !include examples/alertListJSONResponse-example.json
       /{lessThan}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns at most the last thousand Alert Rule IDs that are less than the given max Rule ID. See the alternative form of this list the last 1000 Rule IDs.
           responses: 
             200: 
@@ -437,7 +438,7 @@ traits:
               /to: 
                 /{arrivalAirport}: 
                   get: 
-                    is: [ extendedOptions , authParams ]
+                    is: [ extendedOptions  ]
                     description: We made this service to help you create and test your alert webservices, where FlightStats will send alert messages. When you invoke this service, FlightStats will send a simulated alert - a fake event for a fake flight - to your URL.
                     queryParameters: 
                       type: 
@@ -462,7 +463,7 @@ traits:
             application/json: 
               schema: delayindexResourceVersionResponse
               example: !include examples/delayindexResourceVersionResponse-example.json
-/delayindex/rest/resources{MediaTypeExt}: 
+/delayindex/rest/resources{mediaTypeExtension}: 
   get: 
     responses: 
       200: 
@@ -478,7 +479,7 @@ traits:
     /airports: 
       /{airports}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns the current DelayIndex(es) for the given Airport(s)
           queryParameters: 
             codeType: 
@@ -497,7 +498,7 @@ traits:
     /country: 
       /{country}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns DelayIndexes for airports in the given Country
           queryParameters: 
             classification: 
@@ -515,7 +516,7 @@ traits:
     /region: 
       /{region}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns DelayIndexes for airports in the given Region
           queryParameters: 
             classification: 
@@ -533,7 +534,7 @@ traits:
     /state: 
       /{state}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Returns DelayIndexes for airports in the given State
           queryParameters: 
             classification: 
@@ -649,7 +650,7 @@ traits:
             application/json: 
               schema: weatherVersionResponse
               example: !include examples/weatherVersionResponse-example.json
-/weather/rest/resources{MediaTypeExt}: 
+/weather/rest/resources{mediaTypeExtension}: 
   get: 
     responses: 
       200: 
@@ -665,7 +666,7 @@ traits:
     /all: 
       /{airport}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Retrieve all weather products (METAR, TAF, and Zone Forecast) for the airport.
           queryParameters: 
             codeType: 
@@ -682,7 +683,7 @@ traits:
     /metar: 
       /{airport}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions ]
           description: Retrieve the most current available METAR weather report for the aerodrome around a given airport. METAR reports describe current conditions and are updated about once an hour.
           queryParameters: 
             codeType: 
@@ -699,7 +700,7 @@ traits:
     /taf: 
       /{airport}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Retrieve the most current available Terminal Aerodrome Forecast (TAF) for the airport. TAFs forecast weather conditions for the area within a 5 mile radius from the center of the airport runway complex.
           queryParameters: 
             codeType: 
@@ -716,7 +717,7 @@ traits:
     /zf: 
       /{airport}: 
         get: 
-          is: [ extendedOptions , authParams ]
+          is: [ extendedOptions  ]
           description: Retrieve the most current available zone forecast for the airport. Zone forecasts can cover several days, and apply to a more extensive area around the airport than TAFs.
           queryParameters: 
             codeType: 
@@ -771,7 +772,7 @@ traits:
                 /{month}: 
                   /{day}: 
                     get: 
-                      is: [ extendedOptions , authParams ]
+                      is: [ extendedOptions  ]
                       description: Scheduled Flight(s) by route, arriving on the given date.
                       queryParameters: 
                         codeType: 
@@ -787,7 +788,7 @@ traits:
                               example: !include examples/scheduledFlightRouteXMLResponse-example.xml
             /departing/{year}/{month}/{day}: 
               get: 
-                is: [ extendedOptions , authParams ]
+                is: [ extendedOptions  ]
                 description: Scheduled Flight(s) by route, departing on the given date.
                 queryParameters: 
                   codeType: 
@@ -802,7 +803,7 @@ traits:
                         example: !include examples/scheduledFlightDepartingXMLResponse-example.xml
         /departing/{year}/{month}/{day}/{hourOfDay}: 
           get: 
-            is: [ extendedOptions , authParams ]
+            is: [ extendedOptions  ]
             description: Scheduled Flight(s) departing from the given airport at the given date and hour.
             queryParameters: 
               codeType: 
@@ -823,7 +824,7 @@ traits:
               /{day}: 
                 /{hourOfDay}: 
                   get: 
-                    is: [ extendedOptions , authParams ]
+                    is: [ extendedOptions  ]
                     description: Scheduled Flight(s) arriving at the given airport at the given date and hour.
                     queryParameters: 
                       codeType: 

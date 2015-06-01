@@ -1,5 +1,5 @@
 ---
-site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/dashboard/apis/19476/versions/20788/portal/pages/33992/edit
+site: https://anypoint.mulesoft.com/apiplatform/popular/admin/#/organizations/52560d3f-c37a-409d-9887-79e0a9a9ecff/dashboard/apis/19694/versions/21039/portal/pages/34337/edit
 apiNotebookVersion: 1.1.67
 title: Status And Tracks
 ---
@@ -18,30 +18,35 @@ assert = chai.assert
 API.createClient('client', '#REF_TAG_DEFENITION');
 ```
 
+App credentials, Response data format.
+
 ```javascript
 APPID = prompt("Please input APPID")
 APPKEY = prompt("Please input APPKEY")
 MEDIA_TYPE_JSON = "json"
-MEDIA_TYPE_XML = "xml"
 ```
+
+Date and time for requests.
 
 ```javascript
 var currentTime = new Date()
 var YEAR = currentTime.getFullYear()
-var MONTH = (currentTime.getMonth() + 1) % 12
+var MONTH = currentTime.getMonth() + 1
 var DAY = currentTime.getDate()
 var DAY_HOUR = "8"
 ```
 
+Function for setting header parameters.
+
 ```javascript
-function customAuthHack(o){
+function addOutHeaders(o){
 o.setRequestHeader("appId", APPID);
 o.setRequestHeader("appKey",  APPKEY);
 }
 ```
 
 ```javascript
-API.set(client, 'beforeSend', new function(){return customAuthHack})
+API.set(client, 'beforeSend', new function(){return addOutHeaders})
 ```
 
 Returns the Flight Statuses for the given Carrier and Flight Number that departed on the given date. Optionally, the arrival airport may be specified
@@ -204,21 +209,33 @@ Methods ahead works with paid api plans only.
 Returns the positional tracks of active flights for a fleet. Flight plans may be optionally included. "Active" flights are those for which positional data are available, and which have not yet landed. To narrow down to only the freshest data, you may optionally limit the age (in minutes) or number of positions per track.
 
 ```javascript
-tracksCarrierResponse = client.mediaType(MEDIA_TYPE_JSON).fleet.tracks.carrier("AA").get()
+isPaid = confirm("Do you have Flight Stats paid plan?")
 ```
 
 ```javascript
-assert.equal( tracksCarrierResponse.status, 200 )
-assert.notProperty(tracksCarrierResponse.body, "error")
+if (isPaid){
+  tracksCarrierResponse = client.mediaType(MEDIA_TYPE_JSON).fleet.tracks.carrier("AA").get()
+}
+```
+
+```javascript
+if(isPaid){
+	assert.equal( tracksCarrierResponse.status, 200 )
+	assert.notProperty(tracksCarrierResponse.body, "error")
+}
 ```
 
 Returns the status of all flights for a fleet departing or having departed on the given date (UTC). If 'hourOfDay' is specified, results will be limited to the given hour, unless 'numHours' is also specified
 
 ```javascript
-statusCarrierResponse = client.mediaType(MEDIA_TYPE_JSON).fleet.status.carrier("AA").dep.year(YEAR).month(MONTH).day(DAY).hourOfDay(DAY_HOUR).get()
+if(isPaid){
+	statusCarrierResponse = client.mediaType(MEDIA_TYPE_JSON).fleet.status.carrier("AA").dep.year(YEAR).month(MONTH).day(DAY).hourOfDay(DAY_HOUR).get()
+}
 ```
 
 ```javascript
-assert.equal( statusCarrierResponse.status, 200 )
-assert.notProperty(statusCarrierResponse.body, "error")
+if(isPaid){
+	assert.equal( statusCarrierResponse.status, 200 )
+	assert.notProperty(statusCarrierResponse.body, "error")
+}
 ```
